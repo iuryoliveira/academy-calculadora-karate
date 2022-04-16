@@ -11,16 +11,19 @@ Feature: Cálculo de soma de uma calculadora
         Given request { }
         When method post
         Then status 400
+        And match response == { error: "Envie dois números para serem calculados." }
 
     Scenario: Não deve ser possível realizar cálculos sem enviar o primeiro número
         Given request { num2: 1 }
         When method post
         Then status 400
+        And match response == { error: "Envie dois números para serem calculados." }
 
     Scenario: Não deve ser possível realizar cálculos sem enviar o segundo número
         Given request { num1: 1 }
         When method post
         Then status 400
+        And match response == { error: "Envie dois números para serem calculados." }
 
     Scenario: Somar dois números com sucesso
         Given request { num1: 1, num2: 2 }
