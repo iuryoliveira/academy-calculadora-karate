@@ -29,7 +29,7 @@ Feature: Cálculo de soma de uma calculadora
         And match response == { resultado: 3 }
 
     Scenario Outline: Calcular <primeiroNumero> + <segundoNumero> = <resultadoEsperado>
-        Given request { num1: "#(primeiroNumero)", num2: "#(segundoNumero)" })
+        Given request { num1: "#(primeiroNumero)", num2: "#(segundoNumero)" }
         When method post
         Then status 200
         And match response == { resultado: "#(resultadoEsperado)" }
