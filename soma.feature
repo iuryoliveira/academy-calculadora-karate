@@ -45,3 +45,15 @@ Feature: Cálculo de soma de uma calculadora
             | -1              | -5              | -6                 |
             | -5.4            | -4              | -9.4               |
             | -3.9            | -7.2            | -11.1              |
+
+    Scenario Outline: Os resultados devem ser limitados até duas casas decimais
+        Given request { num1: "#(primeiroNumero)", num2: "#(segundoNumero)" }
+        When method post
+        Then status 200
+        And match response == { resultado: "#(resultadoEsperado)" }
+        
+        Examples:
+            | primeiroNumero! | segundoNumero!  | resultadoEsperado! |
+            | 2.29            | 3.5             | 5.79               |
+            | 0.432           | 8.2             | 8.63               |
+            | -0.432          | 1               | 0.56               |
